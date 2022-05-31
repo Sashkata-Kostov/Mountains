@@ -14,19 +14,19 @@ pipeline {
 
         stage("test") {
             steps {
-                echo "Building..."
+                sh 'mvn test'
             }
         }
 
         stage("analyse") {
             steps {
-                echo "Building..."
+                echo "Analysing with SonarQube."
             }
         }
 
         stage("deploy") {
             steps {
-                echo "Building..."
+                echo "Creating docker container and pushing."
             }
         }
     }
