@@ -19,7 +19,7 @@ public class DefaultMountainServiceUnitTest {
     private DefaultMountainService service;
 
     @Test
-    public void minHeightGreaterThanMaxHeight() {
+    public void whenMinHeightIsMoreThanMaxHeight_thenThrowException() {
         assertThrows(IllegalArgumentException.class,
                 () -> service.getMountainsBetween(100, 50));
     }
