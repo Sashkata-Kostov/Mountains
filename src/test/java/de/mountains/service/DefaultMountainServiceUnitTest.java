@@ -11,7 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
-public class DefaultMountainServiceUnitTest {
+class DefaultMountainServiceUnitTest {
 
     @Mock
     private DefaultMountainsRepository repository;
@@ -19,7 +19,7 @@ public class DefaultMountainServiceUnitTest {
     private DefaultMountainService service;
 
     @Test
-    public void whenMinHeightIsMoreThanMaxHeight_thenThrowException() {
+    void whenMinHeightIsMoreThanMaxHeight_thenThrowException() {
         assertThrows(IllegalArgumentException.class,
                 () -> service.getMountainsBetween(100, 50));
     }
