@@ -28,4 +28,8 @@ public class DefaultMountainService implements MountainsService {
     public boolean saveMountain(Mountain mountain) {
         return mountainsRepository.save(mountain);
     }
+
+    public void setMountainsRepository(MountainsRepository mountainsRepository) {
+        this.mountainsRepository = mountainsRepository;
+    }
 }
