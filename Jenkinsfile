@@ -18,13 +18,23 @@ pipeline {
             }
         }
 
-        stage("analyse") {
+        stage("Scan With Sonar") {
             steps {
-                echo "Analysing with SonarQube."
+                withSonarQubeEnv(installationName: 'sq1') {
+                    sh 'mvn sonar:sonar'
+                }
             }
         }
 
-        stage("Build Docker Image") {
+        stage("Sonar Quality Gate") {
+            steps {
+                timeout(time: 3, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeLine: true
+                }
+            }
+        }
+
+        /* stage("Build Docker Image") {
             steps {
                 sh "docker build -t aleks/mountains ."
             }
@@ -34,6 +44,6 @@ pipeline {
             steps {
                 sh "docker run --rm -p 8090:8090 -d aleks/mountains"
             }
-        }
+        } */
     }
 }
