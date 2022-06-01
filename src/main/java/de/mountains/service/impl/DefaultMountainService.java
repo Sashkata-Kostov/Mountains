@@ -17,6 +17,9 @@ public class DefaultMountainService implements MountainsService {
 
     @Override
     public List<Mountain> getMountainsBetween(int minHeight, int maxHeight) {
+        if (minHeight > maxHeight) {
+            throw new IllegalArgumentException("minHeight cannot be higher than maxHeight.");
+        }
         List<Mountain> mountains = mountainsRepository.loadAll();
         return mountains.stream()
                 .filter(m -> m.getHeight() >= minHeight)
