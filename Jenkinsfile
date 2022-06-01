@@ -32,7 +32,7 @@ pipeline {
 
         stage("Start New Docker Container") {
             steps {
-                sh "docker run --rm aleks/mountains"
+                sh "docker run --rm -p 8090:8090 -d aleks/mountains"
             }
         }
     }
