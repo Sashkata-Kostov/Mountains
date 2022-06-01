@@ -3,6 +3,7 @@ pipeline {
     agent any
     tools {
         maven 'Maven'
+        docker 'Docker'
     }
 
     stages {
@@ -21,6 +22,18 @@ pipeline {
         stage("analyse") {
             steps {
                 echo "Analysing with SonarQube."
+            }
+        }
+
+        stage("Build Docker Image") {
+            steps {
+                sh "docker build -t aleks/mountains ."
+            }
+        }
+
+        stage("Start New Docker Container") {
+            steps {
+                sh "docker run --rm aleks/mountains"
             }
         }
     }
