@@ -2,13 +2,15 @@ package de.mountains.service;
 
 import de.mountains.repository.impl.DefaultMountainsRepository;
 import de.mountains.service.impl.DefaultMountainService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@RunWith(MockitoJUnitRunner.class)
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+@ExtendWith(MockitoExtension.class)
 public class DefaultMountainServiceUnitTest {
 
     @Mock
@@ -16,9 +18,10 @@ public class DefaultMountainServiceUnitTest {
     @InjectMocks
     private DefaultMountainService service;
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void minHeightGreaterThanMaxHeight() {
-        service.getMountainsBetween(100, 50);
+        assertThrows(IllegalArgumentException.class,
+                () -> service.getMountainsBetween(100, 50));
     }
 
 }
