@@ -34,7 +34,7 @@ pipeline {
             }
         }
 
-        /* stage("Build Docker Image") {
+        stage("Build Docker Image") {
             steps {
                 sh "docker build -t aleks/mountains ."
             }
@@ -44,6 +44,6 @@ pipeline {
             steps {
                 sh "docker run --rm -p 8090:8090 -d aleks/mountains"
             }
-        } */
+        }
     }
 }
